@@ -14,4 +14,11 @@ export class ProfilesService {
         return await this.profilesRepository.save(profile);
     }
 
+
+    async deleteProfile(id: string): Promise<Profile> {
+        const profile = await this.profilesRepository.findOneOrFail(id);
+        const status = await this.profilesRepository.delete(id)
+
+        return profile;
+    }
 }

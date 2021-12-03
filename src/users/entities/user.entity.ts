@@ -21,5 +21,5 @@ export class User{
     profile: Profile;
 
     @OneToMany(() => Photo, (photo) => photo.user)
-    photos: Photo[];
+    photos?: Photo[];
 }

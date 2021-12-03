@@ -27,6 +27,26 @@ export class UsersService {
     }
 
     async getUsers(): Promise<User[]> {
-        return await this.usersRepository.find();
+        return await this.usersRepository.find({relations: ["profile"]});
+    }
+
+    async getUserByUsername(username: string): Promise<User | undefined> {
+        return await this.usersRepository.findOne(username, {relations: ["profile"]});
+    }
+
+    async getUserById(id: string): Promise<User | undefined> {
+        return await this.usersRepository.findOne(id, {relations: ["profile"]});
+    }
+
+    async deleteUser(id: string): Promise<User> {
+        const user = await this.usersRepository.findOneOrFail(id);
+        let profile = null;
+
+        if (user && user.profile){
+            profile = await this.profilesService.deleteProfile(id);
+            
+        }
+        const status = await this.usersRepository.delete(id);
+        return user;
     }
 }
