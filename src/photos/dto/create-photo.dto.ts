@@ -3,4 +3,6 @@ export class CreatePhotoDto {
     description: string;
     url: string;
     user: any;
+
+    categories: string[];
 }

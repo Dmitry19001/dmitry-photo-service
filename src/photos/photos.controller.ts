@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { CreatePhotoDto } from './dto/create-photo.dto';
 import { Photo } from './entities/photo.entity';
 import { PhotosService } from './photos.service';
@@ -15,5 +15,10 @@ export class PhotosController {
     @Get()
     async getPhotos(): Promise<Photo[]>{
         return await this.photosService.getPhotos();
+    }
+
+    @Delete(':id')
+    async deleteUser( @Param('id') id:string ) : Promise<Photo> {
+        return await this.photosService.deletePhoto(id);
     }
 }
