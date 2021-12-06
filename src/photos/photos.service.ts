@@ -14,7 +14,7 @@ export class PhotosService {
         private readonly categoriesService: CategoriesService) {}
 
     async insertPhoto(createPhotoDto: CreatePhotoDto){
-        const user = await this.usersService.getUserByUsername(createPhotoDto.user.username);
+        const user = await this.usersService.getUserByUsername(createPhotoDto.username);
         
         //Searching for categories
         let categories = [];

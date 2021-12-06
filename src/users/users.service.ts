@@ -31,12 +31,12 @@ export class UsersService {
     }
 
     async getUserByUsername(username: string): Promise<User | undefined> {
-        console.log("[UsersService]Searching for username: " + username);
+        console.log("[UsersService] Searching for username: " + username);
         return await this.usersRepository.findOne({where: {username: username}, relations: ["profile"]});
     }
 
     async getUserById(id: string): Promise<User | undefined> {
-        console.log("[UsersService]Searching for ID: " + id);
+        console.log("[UsersService] Searching for ID: " + id);
         return await this.usersRepository.findOne(id, {relations: ["photos","profile"]});
     }
 

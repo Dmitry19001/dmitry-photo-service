@@ -1,7 +1,7 @@
 import { Profile } from "../../profiles/entities/profile.entity";
 import { Photo } from "../../photos/entities/photo.entity";
 import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
-import { IsEmail } from "class-validator";
+//import { IsEmail } from "class-validator";
 
 @Entity()
 export class User{ 
@@ -9,7 +9,6 @@ export class User{
     id: string;
 
     @Column({unique: true})
-    @IsEmail()
     username: string;
 
     @Column()

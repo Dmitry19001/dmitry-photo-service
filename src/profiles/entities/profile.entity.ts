@@ -1,5 +1,6 @@
 import { User } from "../../users/entities/user.entity";
 import {Column, Entity, PrimaryGeneratedColumn, OneToOne} from "typeorm"
+import { ApiProperty } from "@nestjs/swagger";
 
 @Entity()
 export class Profile{
