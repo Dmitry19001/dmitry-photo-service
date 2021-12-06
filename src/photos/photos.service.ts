@@ -14,8 +14,9 @@ export class PhotosService {
         private readonly categoriesService: CategoriesService) {}
 
     async insertPhoto(createPhotoDto: CreatePhotoDto){
-        const user = await this.usersService.getUserById(createPhotoDto.user.id);
+        const user = await this.usersService.getUserByUsername(createPhotoDto.user.username);
         
+        //Searching for categories
         let categories = [];
         for (let i = 0; i < createPhotoDto.categories.length; i++)
         {
@@ -25,10 +26,11 @@ export class PhotosService {
             if (category){
                 categories.push(category);
             } else {
-                console.log('Category ${categoryName} not found!');
+                console.log('Category ' + categoryName + ' not found!');
             }
         }
 
+        //Creating new phtoto
         const photo = new Photo();
         photo.name = createPhotoDto.name;
         photo.description = createPhotoDto.description;
