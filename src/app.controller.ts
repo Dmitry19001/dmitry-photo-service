@@ -18,5 +18,6 @@ export class AppController {
   async login(@Request() req){
     const token = this.authService.login(req.user);
     return token;
+    //return this.authService.validateUser(req.body.username, req.body.password);
   }
 }
