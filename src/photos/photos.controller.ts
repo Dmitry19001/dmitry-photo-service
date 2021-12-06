@@ -1,4 +1,5 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { CreatePhotoDto } from './dto/create-photo.dto';
 import { Photo } from './entities/photo.entity';
 import { PhotosService } from './photos.service';
@@ -8,6 +9,7 @@ export class PhotosController {
     constructor(private photosService: PhotosService){}
 
     @Post()
+    @UseGuards(JwtAuthGuard)
     async createPhoto(@Body() createPhotoDto: CreatePhotoDto) : Promise<Photo>{
         return this.photosService.insertPhoto(createPhotoDto)
     }
@@ -18,6 +20,7 @@ export class PhotosController {
     }
 
     @Delete(':id')
+    @UseGuards(JwtAuthGuard)
     async deleteUser( @Param('id') id:string ) : Promise<Photo> {
         return await this.photosService.deletePhoto(id);
     }
