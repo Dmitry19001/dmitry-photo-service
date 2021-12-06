@@ -42,11 +42,11 @@ export class PhotosService {
     }
 
     async getPhotos(): Promise<Photo[]> {
-        return await this.photosRepository.find({relations: ["user" , "Categories"]});
+        return await this.photosRepository.find({relations: ["Categories"]});
     }
 
     async getPhotoById(id:string): Promise<Photo> {
-        return await this.photosRepository.findOne(id, {relations: ["user" , "Categories"]});
+        return await this.photosRepository.findOne(id, {relations: ["Categories"]});
     }
 
     async deletePhoto(id: string): Promise<Photo> {

@@ -14,6 +14,10 @@ export class ProfilesService {
         return await this.profilesRepository.save(profile);
     }
 
+    async getProfileById(id: string): Promise<Profile> {
+        const profile = await this.profilesRepository.findOneOrFail(id, {relations: ["user"]})
+        return profile;
+    }
 
     async deleteProfile(id: string): Promise<Profile> {
         const profile = await this.profilesRepository.findOneOrFail(id);
